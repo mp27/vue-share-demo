@@ -27,14 +27,64 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+    <span class="span-test">span din Hello World</span>
+    <button @click="clicked">Buton din hello</button>
+    <keep-alive>
+      <component :is="currentComponent" :prp="5">acesta este un div</component>
+    </keep-alive>
+    <CompWithSlot>
+      <p slot="footer">Pentru footer</p>
+      <p>din hello</p>
+      <p slot="title">Pentru title</p>
+      <p>din hello</p>
+    </CompWithSlot>
   </div>
 </template>
 
 <script>
+  // import Global from "../Global";
+  import CompWithSlot from "@/components/CompWithSlot";
+  import Comp from "@/components/Comp";
+
 export default {
   name: 'HelloWorld',
+  components: {
+    CompWithSlot,
+    Comp
+  },
   props: {
-    msg: String
+    msg: {
+      type: String
+    },
+    test: {
+      type: Number,
+      default: 10
+    },
+    arr: {
+      type: [Array, Object],
+      default: () => []
+    }
+  },
+  data() {
+    return {
+      myValue: 'valoare',
+      currentComponent: 'CompWithSlot'
+    }
+  },
+  methods: {
+    testMethod() {
+      console.log('FROM HELLO WORLD');
+    },
+    clicked() {
+      console.log(this.$store);
+      this.$store.dispatch('setCounter', 5)
+      .then(() => {
+        console.log('am terminat');
+      });
+      // Global.$emit('updateValue', 5);
+      this.$emit('updateValue2', 5);
+      this.currentComponent = 'Comp';
+    }
   }
 }
 </script>
@@ -55,4 +105,8 @@ li {
 a {
   color: #42b983;
 }
+
+  .span-test {
+    color: blue;
+  }
 </style>
