@@ -74,6 +74,7 @@ export default {
   },
   created() {
     console.log('created');
+    console.log(this.$store);
   },
   mounted() {
     console.log('mounted');

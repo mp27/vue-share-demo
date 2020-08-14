@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import test from './modules/test';
+import test2 from './test2';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -35,5 +38,9 @@ export default new Vuex.Store({
         toggleDrawer(context, payload) {
             context.commit('toggleDrawer', payload ? payload:!context.state.toggleDrawer);
         }
+    },
+    modules: {
+        test: test,
+        test2: test2
     }
 });

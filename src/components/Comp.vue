@@ -17,7 +17,7 @@
         },
         computed: {
             ...mapGetters({
-                counter: 'getCounter'
+                counter: 'test/getCounter'
             }),
         }
     }

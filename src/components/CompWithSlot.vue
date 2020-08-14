@@ -1,6 +1,11 @@
 <template>
     <div style="color: red;">
         <slot name="title"></slot>
+        <div>
+            <span v-if="false">Span1</span>
+            <span v-else-if="false">Span2</span>
+            <span v-else>Span3</span>
+        </div>
         <h1>Title</h1>
         <slot></slot>
         <p>Footer</p>
@@ -15,9 +20,13 @@
     export default {
         name: "CompWithSlot",
         methods: {
-            ...mapActions({
+            ...mapActions('test', {
+                setCounter: 'setCounter',
+                anotherSetCounter: 'anotherSetCounter',
+            }),
+            ...mapActions('test2', {
                 setCounter: 'setCounter'
-            })
+            }),
         }
     }
 </script>
