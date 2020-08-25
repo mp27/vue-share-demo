@@ -43,6 +43,8 @@
                     return false;
                 }
 
+                console.log('SUBMITTED');
+
                 this.$emit('submit', this.user);
             }
         }

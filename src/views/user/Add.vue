@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Add users</h1>
-        <UserForm @submit="addUser"/>
+        <UserForm @submit="addUser" ref="userForm"/>
 <!--        <form action="">-->
 <!--            <input type="text" v-model="user.username">-->
 <!--            <input type="text" v-model="user.email">-->
@@ -16,6 +16,9 @@
     export default {
         components: {
           UserForm
+        },
+        mounted() {
+          this.$refs.userForm.submit();
         },
         methods: {
             addUser(user) {
