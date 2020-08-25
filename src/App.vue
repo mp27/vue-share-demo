@@ -24,18 +24,24 @@
       <input  type="checkbox" :value="number" v-model="checkboxValue" v-for="number in numbers" :key="number">
     </div>
     <Comp :prp="prp" />
+    <EditUser />
+    <AddUser/>
   </div>
 </template>
 
 <script>
   import HelloWorld from './components/HelloWorld';
   import Comp from './components/Comp';
+  import EditUser from './views/user/Edit';
+  import AddUser from './views/user/Add';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    Comp
+    Comp,
+    EditUser,
+    AddUser
   },
   data() {
     return {
