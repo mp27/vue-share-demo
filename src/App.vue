@@ -4,6 +4,7 @@
     <HelloWorld :msg="message" ref="helloWorld" @updateValue2="updateValue" />
     {{message}}
     {{computedText}}
+    {{computedTextMethod()}}
     <button @click="changeText()">Change text</button>
     <span class="span-test" v-if="showSpan">span din APP</span>
     <ul>
@@ -26,6 +27,18 @@
     <Comp :prp="prp" />
     <EditUser />
     <AddUser/>
+    <button @click="showModal = true">Open modal</button>
+    <button @click="showModalOther = true">Open second modal</button>
+    <CustomModal v-model="showModal" :close-on-overlay-click="false">
+      <div slot="body">
+        <p>BODDYY</p>
+      </div>
+      </CustomModal>
+    <CustomModal v-model="showModalOther" :close-on-overlay-click="false">
+      <div slot="body">
+        <p>Alt modal</p>
+      </div>
+    </CustomModal>
   </div>
 </template>
 
@@ -34,6 +47,7 @@
   import Comp from './components/Comp';
   import EditUser from './views/user/Edit';
   import AddUser from './views/user/Add';
+  import CustomModal from "@/components/CustomModal";
 
 export default {
   name: 'App',
@@ -41,7 +55,8 @@ export default {
     HelloWorld,
     Comp,
     EditUser,
-    AddUser
+    AddUser,
+    CustomModal
   },
   data() {
     return {
@@ -56,7 +71,9 @@ export default {
       },
       valInput: '',
       checkboxValue: [],
-      prp: 0
+      prp: 0,
+      showModal: false,
+      showModalOther: false
     }
   },
   methods: {
@@ -64,12 +81,17 @@ export default {
       this.message = 'Altceva';
       this.showSpan = false;
     },
+    computedTextMethod() {
+      console.log('METHOD COMP');
+      return this.message + this.secondText;
+    },
     updateValue(val) {
       this.prp = val;
     }
   },
   computed: {
     computedText() {
+      console.log('COMPUTED COMP');
       return this.message + this.secondText;
     }
   },
